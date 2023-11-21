@@ -1,3 +1,3 @@
 # ControlDreamer
 ControlDreamer: Progressive Stylized 3D Generation with Multi-View ControlNet 
-![ControlDreamer](https://github.com/oyt9306/ControlDreamer/assets/41467632/d95ff4be-9519-4135-8309-be3caa81ee01)
+<img src="https://user-images.githubusercontent.com/51365114/119627750-716f3100-be47-11eb-8e83-686b23c2c161.png  width="200" height="400"/>
