@@ -2,4 +2,4 @@
 ControlDreamer: Progressive Stylized 3D Generation with Multi-View ControlNet <br/>
 
 # News
-[11/22] We have released our Project page!(https://controldreamer.github.io/)
+[11/22] We have released our Project page! (https://controldreamer.github.io/)
