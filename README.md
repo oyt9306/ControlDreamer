@@ -5,7 +5,7 @@ Authors: Yeongtak Oh*, Jooyoung Choi*, Yongsung Kim, Minjun Park, Chaehun Shin, 
 [Project Page](https://controldreamer.github.io/) | [Paper](https://arxiv.org/abs/2312.01129) | [Demo]()
 
 <p align="center">
-    <img src = "https://github.com/user-attachments/assets/3841813c-01d9-455c-b507-30ff19874de3" width="80%">
+    <img src = "https://github.com/user-attachments/assets/607a1071-59dc-4cea-a704-f6e1bac8325b" width="80%">
 </p>
 
 ## Installation 
