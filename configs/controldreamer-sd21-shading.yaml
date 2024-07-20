@@ -1,0 +1,108 @@
+name: "controldreamer-sd21-shading"
+tag: "${rmspace:${system.prompt_processor.prompt},_}"
+exp_root_dir: "outputs"
+seed: 0
+
+data_type: "random-multiview-camera-datamodule"
+data:
+  batch_size: 4
+  n_view: 4
+  # 0-4999: 64x64, >=5000: 256x256
+  width: 256
+  height: 256
+  camera_distance_range: [0.8, 1.0] # relative
+  fovy_range: [15, 60]
+  elevation_range: [0, 30]
+  camera_perturb: 0.
+  center_perturb: 0.
+  up_perturb: 0.
+  n_val_views: 4
+  eval_camera_distance: 3.0
+  eval_fovy_deg: 40.
+
+system_type: "mvdream-control-system"
+system:
+  refinement: true
+  geometry_convert_from: ???
+  geometry_convert_inherit_texture: true
+  geometry_type: "tetrahedra-sdf-grid"
+  geometry:
+    radius: 1.0 # consistent with coarse
+    isosurface_resolution: 128
+    isosurface_deformable_grid: true
+    pos_encoding_config: # consistent with coarse, no progressive band
+      otype: HashGrid
+      n_levels: 16
+      n_features_per_level: 2
+      log2_hashmap_size: 19
+      base_resolution: 16
+      per_level_scale: 1.4472692374403782 # max resolution 4096
+    fix_geometry: false # optimize grid sdf and deformation
+
+  material_type: "diffuse-with-point-light-material"
+  material:
+    ambient_only_steps: 0
+    textureless_prob: 0.5
+    ambient_light_color: [1.0, 1.0, 1.0]
+    diffuse_light_color: [0.0, 0.0, 0.0]
+    soft_shading: true
+    albedo_activation: sigmoid
+
+  background_type: "neural-environment-map-background"
+  background:
+    color_activation: sigmoid
+    random_aug: true
+    share_aug_bg: true
+
+  renderer_type: "nvdiff-rasterizer"
+  renderer:
+    context_type: gl
+
+  prompt_processor_type: "stable-diffusion-prompt-processor"
+  prompt_processor:
+    pretrained_model_name_or_path: "stabilityai/stable-diffusion-2-1-base"
+    prompt: ???
+    negative_prompt: "ugly, bad anatomy, blurry, pixelated obscure, unnatural colors, poor lighting, dull, and unclear, cropped, lowres, low quality, artifacts, duplicate, morbid, mutilated, poorly drawn face, deformed, dehydrated, bad proportions"
+    front_threshold: 30.
+    back_threshold: 30.
+
+  guidance_type: "multiview-control-guidance"
+  guidance:
+    model_name: './extern/MVDream/mvdream/configs/cldm_v21_mvdream.yaml'
+    ckpt_path: './extern/MVDream/mvdream/ckpt/depth_model.ckpt' # path to a pre-downloaded checkpoint file
+    guidance_scale: 50.0
+    min_step_percent: [0, 0.98, 0.02, 4000]  # (start_iter, start_val, end_val, end_iter)
+    max_step_percent: [0, 0.98, 0.50, 4000]
+    recon_loss: true
+    control_freq: 1
+    recon_std_rescale: 0.5
+
+  loggers:
+    wandb:
+      enable: false
+      project: 'threestudio'
+
+  loss:
+    lambda_sds: 1.
+    lambda_normal_consistency: 10000.
+    lambda_laplacian_smoothness: 10000.
+
+  optimizer:
+    name: AdamW
+    args:
+      lr: 0.01
+      betas: [0.9, 0.99]
+      eps: 1.e-15
+
+trainer:
+  max_steps: 5000
+  log_every_n_steps: 1
+  num_sanity_val_steps: 0
+  val_check_interval: 100
+  enable_progress_bar: true
+  precision: 32
+
+checkpoint:
+  save_last: true
+  save_top_k: -1
+  every_n_train_steps: ${trainer.max_steps}

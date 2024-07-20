@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: mvdream
+Version: 0.0.1
+Summary: Multi-view Diffusion Models
+Author: ByteDance
+License-File: LICENSE-CODE
+Requires-Dist: torch
+Requires-Dist: numpy
+Requires-Dist: tqdm
+Requires-Dist: omegaconf
+Requires-Dist: einops
+Requires-Dist: huggingface_hub
+Requires-Dist: transformers
+Requires-Dist: open-clip-torch
