@@ -15,6 +15,8 @@ This part is the same as original [MVDream-threestudio](https://github.com/byted
 ### Install ControlDreamer
 ControlDreamer using multi-view ControlNet is provided in a different codebase. Install it by:
 ```sh
+export PYTHONPATH=$PYTHONPATH:./extern/MVDream
+export PYTHONPATH=$PYTHONPATH:./extern/ImageDream
 pip install -e extern/MVDream 
 ```
 Further, to provide depth-conditioned MV-ControlNet, download from url or please put midas ckpt file on:
@@ -34,7 +36,6 @@ python launch.py --config configs/mvdream-sd21-shading.yaml \
 
 After generation, refine the source representation using MV-ControlNet by transforming it into DMTet:
 ```sh
-export PYTHONPATH=$PYTHONPATH:./extern/MVDream
 CFG_PATH=configs/controldreamer-sd21-shading.yaml
 LOADPATH=outputs/source/Hulk/ckpts/last.ckpt
 
