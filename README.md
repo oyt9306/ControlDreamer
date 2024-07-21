@@ -46,6 +46,8 @@ python launch.py --config ${CFG_PATH} \
     system.geometry_convert_override.isosurface_threshold=10.
 ```
 
+Note: Please refer to our [3D edit prompt bench](https://www.dropbox.com/scl/fi/do3b5fibwva3crr2ww1pd/3D_edit_bench.yaml?rlkey=ee9rjwzlsdck9upyhlfkgw1op&dl=0) for creative 3D generation.
+ 
 ## Credits
 - This code is forked from [threestudio](https://github.com/threestudio-project/threestudio), [MVDream](https://github.com/bytedance/MVDream-threestudi), and [ImageDream](https://github.com/bytedance/ImageDream).
 
