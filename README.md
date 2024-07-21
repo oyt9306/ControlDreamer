@@ -1,5 +1,6 @@
 # ControlDreamer: Stylized 3D Generation with Multi-View ControlNet
 Venue: BMVC 2024
+
 Authors: Yeongtak Oh*, Jooyoung Choi*, Yongsung Kim, Minjun Park, Chaehun Shin, Sungroh Yoon
 (* denotes equal contribution)
 
