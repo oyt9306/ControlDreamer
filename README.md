@@ -25,7 +25,7 @@ Further, to provide depth-conditioned MV-ControlNet, download from url or please
 ```ControlDreamer/extern/MVDream/mvdream/annotator/ckpts```
 
 ## Quickstart
-Please download the model from [MV-ControlNet](https://drive.google.com/file/d/1hOdpfVTkKvUXGQStcmeFnzY0P_q4ZSod/view?usp=sharing) under ```./extern/MVDream/MVDream/ckpt```
+Please download the model from [MV-ControlNet](https://drive.google.com/file/d/1hOdpfVTkKvUXGQStcmeFnzY0P_q4ZSod/view?usp=sharing) under ```./extern/MVDream/mvdream/ckpt```
 
 In the paper, we use the configuration with soft-shading for source generation. An A40 GPU is required, and we recommend setting num_samples_per_ray to 256 (originally 512) to prevent out-of-memory issues in most cases. Additionally, we provide an example source NeRF representation of [Hulk](https://drive.google.com/drive/folders/1rSemwNII8dQsY4YlkEoT2mtUj9RmPgLi?usp=sharing), generated from MVDream. If you want to use this, put this file into ```outputs/source```. 
 
