@@ -11,7 +11,7 @@ Authors: Yeongtak Oh*, Jooyoung Choi*, Yongsung Kim, Minjun Park, Chaehun Shin, 
 </p>
 
 ## Installation 
-This part is the same as original [MVDream-threestudio](https://github.com/bytedance/MVDream-threestudio). Skip it if you already have installed the environment, or we provide our envirionment as environment.yaml file. 
+This part is the same as original [MVDream-threestudio](https://github.com/bytedance/MVDream-threestudio). Skip it if you already have installed the environment.
 
 
 ### Install ControlDreamer
