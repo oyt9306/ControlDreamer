@@ -33,7 +33,7 @@ To get the source representation:
 ```sh
 python launch.py --config configs/mvdream-sd21-shading.yaml \
     --train --gpu 0 \
-    system.prompt_processor.prompt="A highly-detailed photo of a British Shorthair-shaped lioness, 4K, HD"
+    system.prompt_processor.prompt="A high-resolution rendering of a Hulk, 3d asset"
 ```
 
 After generation, refine the source representation using MV-ControlNet by transforming it into DMTet:
