@@ -176,20 +176,20 @@ class MultiviewDiffusionGuidance(BaseModule):
                 # encode image into latents with vae, requires grad!
                 latents = self.encode_images(pred_rgb)
 
-        # detected_maps = []
-        # for i in range(len(pred_rgb)):
-        #     img_load= to_pil_image(pred_rgb[i].detach().cpu())
-        #     img_detect = np.array(img_load)  
-        #     if self.cfg.input_mode == 'depth':
-        #         detected_map, _ = self.apply_detect(img_detect, 100,200) # MiDas Depth
-        #     elif self.cfg.input_mode == 'canny':
-        #         detected_map = self.apply_canny(img_detect, 100,200) # canny edge
-        #     elif self.cfg.input_mode == 'normal':
-        #         _, detected_map = self.apply_detect(img_detect, bg_th=0.4) # MiDas Normal
-        #     detected_map = torch.from_numpy(HWC3(detected_map).copy()).permute(2,0,1).float().cuda() / 255.0
-        #     detected_maps.append(detected_map)
-        # input_cond = torch.stack(detected_maps)
-        input_cond = depth.repeat(1,1,1,3).float().cuda() 
+        detected_maps = []
+        for i in range(len(pred_rgb)):
+            img_load= to_pil_image(pred_rgb[i].detach().cpu())
+            img_detect = np.array(img_load)  
+            if self.cfg.input_mode == 'depth':
+                detected_map, _ = self.apply_detect(img_detect, 100,200) # MiDas Depth
+            elif self.cfg.input_mode == 'canny':
+                detected_map = self.apply_canny(img_detect, 100,200) # canny edge
+            elif self.cfg.input_mode == 'normal':
+                _, detected_map = self.apply_detect(img_detect, bg_th=0.4) # MiDas Normal
+            detected_map = torch.from_numpy(HWC3(detected_map).copy()).permute(2,0,1).float().cuda() / 255.0
+            detected_maps.append(detected_map)
+        input_cond = torch.stack(detected_maps)
+        # input_cond = depth.repeat(1,1,1,3).float().cuda() 
         
         # sample timestep
         if timestep is None:
