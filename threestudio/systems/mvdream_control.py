@@ -47,14 +47,10 @@ class MVDreamSystem(BaseLift3DSystem):
 
     def training_step(self, batch, batch_idx):
         out = self(batch)
-        # depth
-        # out["depth"] : same size of out["comp_rgb"], [bs, h, w, 1]
         batch['idx'] = batch_idx
-        # print('in', out["comp_rgb"].requires_grad, out["depth"].requires_grad)
         guidance_out = self.guidance(
-            out["comp_rgb"], out["depth"].clone().detach(), self.prompt_utils, **batch
-        ) #   out["depth"], 
-        # print(guidance_out)
+            out["comp_rgb"], self.prompt_utils, **batch
+        )
         loss = 0.0
 
         for name, value in guidance_out.items():
