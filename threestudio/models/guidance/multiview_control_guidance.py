@@ -140,7 +140,6 @@ class MultiviewDiffusionGuidance(BaseModule):
     def forward(
         self,
         rgb: Float[Tensor, "B H W C"],
-        depth: Float[Tensor, "B H W 1"],
         prompt_utils: PromptProcessorOutput,
         elevation: Float[Tensor, "B"],
         azimuth: Float[Tensor, "B"],
